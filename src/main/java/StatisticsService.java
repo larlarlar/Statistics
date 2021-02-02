@@ -1,7 +1,6 @@
 import java.util.Arrays;
 
-public class StatisticsService {
-
+public class StatisticsService<sum, average> {
     public long calculateSum(long[] gains) {
         long sum = 0;
         for (long gain : gains) {
@@ -9,61 +8,54 @@ public class StatisticsService {
         }
         return sum;
     }
-    public long calculateAverage(long[] gains) {
-        long sum = 0;
-        for (long gain : gains) {
-            sum += gain;
-        }
-        long Average = sum / 12;
-        return Average;
+
+    public long calculateAverage(long[] gains, long sum) {
+        long average = sum / gains.length;
+        return average;
     }
 
 
     public long findMax(long[] gains) {
-         long currentMax = gains[0];
-        int max_index = 0;
-                for(int l=1; l < gains.length; l++) { if (gains[l] >= currentMax){
-                    currentMax = gains[l];
-                    max_index = l;
-
+        long currentMax = gains[0];
+        int maxIndex = 0;
+        for (int l = 1; l < gains.length; l++) {
+            if (gains[l] >= currentMax) {
+                currentMax = gains[l];
+                maxIndex = l;
             }
         }
-                return max_index;
+        return maxIndex;
     }
+
     public long findMin(long[] gains) {
         long currentMin = gains[0];
-        int min_index = 0;
-        for(int l=1; l < gains.length; l++) { if (gains[l] <= currentMin){
-            currentMin = gains[l];
-            min_index = l;
-        }
-        }
-        return min_index;
-    }
-public long findUnderAverage(long[] gains) {
-    long sum = 0;
-    for (long gain : gains) {
-        sum += gain;
-    }
-    long Average = sum / 12;
-    long count = 0;
-        for (int l = 0; l < gains.length; l++) {
-            if (gains[l] < Average) {
-                count++;
+        int minIndex = 0;
+        for (int l = 1; l < gains.length; l++) {
+            if (gains[l] <= currentMin) {
+                currentMin = gains[l];
+                minIndex = l;
             }
-        } return count;
-}
-    public long findOverAverage(long[] gains) {
-        long sum = 0;
-        for (long gain : gains) {
-            sum += gain;
         }
-        long Average = sum / 12;
-        long countover = 0;
+        return minIndex;
+    }
+
+    public long findUnderAverage(long[] gains, long average) {
+        long countUnder = 0;
         for (int l = 0; l < gains.length; l++) {
-            if (gains[l] > Average) {
-                countover++;
+            if (gains[l] < average) {
+                countUnder++;
             }
-        } return countover;
+        }
+        return countUnder;
+    }
+
+    public long findOverAverage(long[] gains, long average) {
+        long countOver = 0;
+        for (int l = 0; l < gains.length; l++) {
+            if (gains[l] > average) {
+                countOver++;
+            }
+        }
+        return countOver;
     }
 }
