@@ -17,7 +17,7 @@ public class Main {
         boolean passed1 = expectedSum == sum;
         System.out.println("Сумма всех продаж:" + sum);
 
-        long average = service.calculateAverage(gains, sum);
+        long average = service.calculateAverage(gains);
         boolean passed2 = expectedAverage == average;
         System.out.println("Средняя сумма продаж в месяц:" + average);
 
@@ -31,11 +31,11 @@ public class Main {
         long monthnumbermin = minIndex + 1;
         System.out.println("Номер месяца, в котором был минимум продаж:" + monthnumbermin);
 
-        long countUnder = service.findUnderAverage(gains, average);
+        long countUnder = service.findUnderAverage(gains);
         boolean passed5 = expectedUnderAverage == countUnder;
         System.out.println("Кол-во месяцев, в которых продажи были ниже среднего:" + countUnder);
 
-        long countOver = service.findOverAverage(gains, average);
+        long countOver = service.findOverAverage(gains);
         boolean passed6 = expectedOverAverage == countOver;
         System.out.println("Кол-во месяцев, в которых продажи были выше среднего:" + countOver);
     }

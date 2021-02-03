@@ -9,7 +9,8 @@ public class StatisticsService<sum, average> {
         return sum;
     }
 
-    public long calculateAverage(long[] gains, long sum) {
+    public long calculateAverage(long[] gains) {
+        long sum = calculateSum(gains);
         long average = sum / gains.length;
         return average;
     }
@@ -39,7 +40,8 @@ public class StatisticsService<sum, average> {
         return minIndex;
     }
 
-    public long findUnderAverage(long[] gains, long average) {
+    public long findUnderAverage(long[] gains) {
+        long average = calculateAverage(gains);
         long countUnder = 0;
         for (int l = 0; l < gains.length; l++) {
             if (gains[l] < average) {
@@ -49,7 +51,8 @@ public class StatisticsService<sum, average> {
         return countUnder;
     }
 
-    public long findOverAverage(long[] gains, long average) {
+    public long findOverAverage(long[] gains) {
+        long average = calculateAverage(gains);
         long countOver = 0;
         for (int l = 0; l < gains.length; l++) {
             if (gains[l] > average) {
